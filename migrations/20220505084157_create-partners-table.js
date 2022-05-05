@@ -1,14 +1,14 @@
 
 exports.up = function(knex) {
   return knex.schema.createTable('settlements', table => {
-        table.increments()
-        table.text('settlement_name')
+        table.increments();
+        table.text('name')
     })
     .createTable('partners', table => {
-        table.increments()
+        table.increments();
         table.text('name')
-            .notNullable()
-        table.integer('settlemet_id')
+            .notNullable();
+        table.integer('settlement_id')
             .unsigned()
             .references('id')
             .inTable('settlements')
@@ -18,5 +18,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('partners').dropTableIfExists('settlemens')
+  return knex.schema.dropTableIfExists('partners').dropTableIfExists('settlements')
 };
