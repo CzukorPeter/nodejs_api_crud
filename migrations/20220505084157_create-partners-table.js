@@ -7,9 +7,9 @@ exports.up = function(knex) {
     .createTable('partners', table => {
         table.increments();
         table.text('name')
-            .notNullable();
         table.integer('settlement_id')
             .unsigned()
+            .notNullable()
             .references('id')
             .inTable('settlements')
             .onDelete('CASCADE')
