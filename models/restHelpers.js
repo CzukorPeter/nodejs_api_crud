@@ -14,9 +14,11 @@ module.exports = {
     findSettlementById,
     removeSettlementById,
     updateSettlementById,
+    findSettlementPartners,
+
+
     addPartner,
     findPartners,
-    findSettlementPartners,
     findPartnerById,
 };
 
@@ -63,10 +65,12 @@ function findPartners(){
 
 
 function findPartnerById(id){
-    return db('partners')
-    .where({ id })
-    .first();
+        return db('partners as p')
+        .where({ id });
 }
+
+
+
 
 
 async function addPartner(partner, settlement_id) {
