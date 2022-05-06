@@ -15,6 +15,7 @@ module.exports = {
     removeSettlementById,
     updateSettlementById,
     addPartner,
+    findSettlementPartners,
     findPartnerById,
 };
 
@@ -60,4 +61,17 @@ async function addPartner(partner, settlement_id) {
     .where({ settlement_id })
     .insert(partner);
     return findPartnerById(id);
+  }
+
+
+function findSettlementPartners(settlement_id) {
+    return db("settlements as s")
+      .join("partners as p", "s.id", "p.settlement_id")
+      .select(
+        "s.id as settlementsID",
+        "s.name as settlementsName",
+        "p.id as partnerID",
+        "p.name"
+      )
+      .where({ settlement_id });
   }

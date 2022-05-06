@@ -119,8 +119,21 @@ server.post("/api/settlements/:id/partners", (req, res) => {
       });
   });
 
+//findSettlementPartners
+server.get("/api/settlements/:id/partners", (req, res) => {
+    const { id } = req.params;
+  
+    Settlements.findSettlementPartners(id)
+      .then((settlement) => {
+        res.status(200).json(settlement);
+      })
+      .catch((error) => {
+        res.status(500).json({ message: "Error retrieving messages" });
+      });
+  });
 
 
+/////////////////
 server.get('/nodemon', (req, res) => {
     res.json({ nodemon: " Nodemon endpoint for testing nodeman tool."})
 });
