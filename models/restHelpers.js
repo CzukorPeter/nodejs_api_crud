@@ -13,12 +13,14 @@ module.exports = {
     findSettlements,
     findSettlementById,
     removeSettlementById,
-    updateSettlementById
+    updateSettlementById,
+    addPartner,
+    findPartnerById,
 };
 
 async function addSettlement(settlement) {
   const [id] = await db('settlements').insert(settlement);
-  return id;
+  return findSettlementById(id);
 }
 
 function findSettlements(){
@@ -45,3 +47,17 @@ function updateSettlementById(id, changes){
         return findSettlementById(id);
     });
 }
+
+function findPartnerById(id){
+    return db('partners')
+    .where({ id })
+    .first();
+}
+
+
+async function addPartner(partner, settlement_id) {
+    const [id] = await db('partners')
+    .where({ settlement_id })
+    .insert(partner);
+    return findPartnerById(id);
+  }

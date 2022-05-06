@@ -1,5 +1,6 @@
 const express = require('express');
 const Settlements = require('./models/restHelpers')
+const Partners = require('./models/restHelpers')
 
 const server = express();
 
@@ -82,6 +83,42 @@ server.patch('/api/settlements/:id', (req, res) => {
         res.status(500).json({ message: "cant update id"})
     });
 });
+
+
+//addPartner
+//ptr = partner in short
+server.post("/api/settlements/:id/partners", (req, res) => {
+    const { id } = req.params;
+    const ptr = req.body;
+  
+    if (!ptr.settlement_id) {
+        ptr["settlement_id"] = parseInt(id, 10);
+    }
+  
+    Settlements.findSettlementById(id)
+      .then((settlement) => {
+        if (!settlement) {
+          res.status(404).json({ message: "cant find settlement id" });
+        }
+        // Check for all required fields
+        if (!ptr.name) {
+          res
+            .status(400)
+            .json({ message: "need to provide required field values atm.: just name" });
+        }
+  
+        Partners.addPartner(ptr, id)
+          .then((partner) => {
+            if (partner) {
+              res.status(200).json({message: "partner successfully added" });
+            }
+          })
+      })
+      .catch((error) => {
+        res.status(500).json({ message: "Error finding settlement" });
+      });
+  });
+
 
 
 server.get('/nodemon', (req, res) => {
