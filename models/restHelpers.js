@@ -15,6 +15,7 @@ module.exports = {
     removeSettlementById,
     updateSettlementById,
     addPartner,
+    findPartners,
     findSettlementPartners,
     findPartnerById,
 };
@@ -49,6 +50,18 @@ function updateSettlementById(id, changes){
     });
 }
 
+function findPartners(){
+    return db('partners as p')
+    .join("settlements as s", "s.id", "p.settlement_id")
+    .select(
+      "p.id",
+      "p.name",
+      "s.id as settlementsID",
+      "s.name as settlementsName"
+    );
+}
+
+
 function findPartnerById(id){
     return db('partners')
     .where({ id })
@@ -71,7 +84,9 @@ function findSettlementPartners(settlement_id) {
         "s.id as settlementsID",
         "s.name as settlementsName",
         "p.id as partnerID",
-        "p.name"
+        "p.name as partnerName"
       )
       .where({ settlement_id });
   }
+  
+  

@@ -13,6 +13,9 @@ const PORT = 1550;
 //partners
 //partner
 
+
+//////////////// SETTLEMENTS API ////////////////
+
 //addSettlement
 server.post('/api/settlements', (req, res) => {
     Settlements.addSettlement(req.body)
@@ -84,6 +87,7 @@ server.patch('/api/settlements/:id', (req, res) => {
     });
 });
 
+//////////////// PARTNERS API ////////////////
 
 //addPartner
 //ptr = partner in short
@@ -118,6 +122,18 @@ server.post("/api/settlements/:id/partners", (req, res) => {
         res.status(500).json({ message: "Error finding settlement" });
       });
   });
+
+//findPartners
+server.get('/api/partners', (req, res) => {
+    Partners.findPartners(req.body)
+    .then(partner => {
+        res.status(200).json(partner)
+    })
+    .catch(error => {
+        res.status(500).json({ message: "cant retrieve partners"})
+    });
+});
+
 
 //findSettlementPartners
 server.get("/api/settlements/:id/partners", (req, res) => {
