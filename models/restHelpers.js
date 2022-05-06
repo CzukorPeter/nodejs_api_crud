@@ -69,15 +69,18 @@ function findPartners(){
       "p.name",
       "s.id as settlementsID",
       "s.name as settlementsName"
-    );
+    )
+    //.orderBy('p.name', 'asc')
+    ;
 }
 
 
-function findPartnerById(id){
+function findPartnerById(id) {
   return db('partners')
-  .where({ id })
+  .where({id})
   .first();
 }
+
 
 
 function findSettlementPartners(settlement_id) {
