@@ -26,12 +26,13 @@ router.get('/:id', (req, res) => {
         if (partner) {
             res.status(200).json(partner)
         } else {
-            res.status(404).json({ message: "cant find partner id"})
+            res.status(404).json({ message: "cant find settlement id"})
         }
     })
     .catch(error => {
         res.status(500).json({ message: "cant perform api call"})
     });
 });
+
 
 module.exports = router;

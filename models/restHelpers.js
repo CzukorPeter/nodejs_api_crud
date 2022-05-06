@@ -52,6 +52,15 @@ function updateSettlementById(id, changes){
     });
 }
 
+
+
+async function addPartner(partner, settlement_id) {
+  const [id] = await db('partners')
+  .where({ settlement_id })
+  .insert(partner);
+  return findPartnerById(id);
+}
+
 function findPartners(){
     return db('partners as p')
     .join("settlements as s", "s.id", "p.settlement_id")
@@ -65,20 +74,10 @@ function findPartners(){
 
 
 function findPartnerById(id){
-        return db('partners as p')
-        .where({ id });
+  return db('partners')
+  .where({ id })
+  .first();
 }
-
-
-
-
-
-async function addPartner(partner, settlement_id) {
-    const [id] = await db('partners')
-    .where({ settlement_id })
-    .insert(partner);
-    return findPartnerById(id);
-  }
 
 
 function findSettlementPartners(settlement_id) {
