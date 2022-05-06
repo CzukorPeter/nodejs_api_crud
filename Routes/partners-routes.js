@@ -18,4 +18,20 @@ router.get('/', (req, res) => {
     });
 });
 
+//findPartnerById
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
+    Partners.findPartnerById(id)
+    .then(partner => {
+        if (partner) {
+            res.status(200).json(partner)
+        } else {
+            res.status(404).json({ message: "cant find partner id"})
+        }
+    })
+    .catch(error => {
+        res.status(500).json({ message: "cant perform api call"})
+    });
+});
+
 module.exports = router;
