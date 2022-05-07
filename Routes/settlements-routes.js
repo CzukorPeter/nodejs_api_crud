@@ -126,4 +126,6 @@ router.get("/:id/partners", (req, res) => {
       });
   });
 
+
+  
   module.exports = router;

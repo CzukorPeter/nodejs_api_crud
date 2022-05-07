@@ -34,9 +34,12 @@ async function addSettlement(settlement) {
   return findSettlementById(id);
 }
 
-function findSettlements(){
-    return db('settlements');
+function findSettlements(key){
+    return db('settlements')
+    .where({ key })
+    .first();;
 }
+
 
 function findSettlementById(id){
     return db('settlements')
