@@ -11,6 +11,13 @@ module.exports = {
     updateSettlementById,
     findSettlementPartners,
 
+    addCompanyform,
+    findCompanyforms,
+    findCompanyformById,
+    removeCompanyformById,
+    updateCompanyformById,
+    findCompanyformPartners,
+
 
     addPartner,
     findPartners,
@@ -18,7 +25,6 @@ module.exports = {
     removePartnerById,
     updatePartnerById,
 };
-
 
 //settlements
 //settlement
@@ -54,36 +60,75 @@ function updateSettlementById(id, changes){
 }
 
 
+//companyforms
+//companyform
+
+async function addCompanyform(companyform) {
+  const [id] = await db('companyforms').insert(companyform);
+  return findCompanyformById(id);
+}
+
+function findCompanyforms(){
+    return db('companyforms');
+}
+
+function findCompanyformById(id){
+    return db('companyforms')
+    .where({ id })
+    .first();
+}
+
+function removeCompanyformById(id){
+    return db('companyforms')
+    .where({ id })
+    .del();
+}
+
+function updateCompanyformById(id, changes){
+    return db('companyforms')
+    .where({ id })
+    .update(changes)
+    .then(() => {
+        return findCompanyformById(id);
+    });
+}
+
+
 //partners
 //partner
 
-async function addPartner(partner, settlement_id) {
+async function addPartner(partner, settlement_id, companyform_id) {
   const [id] = await db('partners')
-  .where({ settlement_id })
+  .where({ settlement_id, companyform_id })
   .insert(partner);
   return findPartnerById(id);
 }
 
 function findPartners(){
     return db('partners as p')
-    .join("settlements as s", "s.id", "p.settlement_id")
+    .leftJoin("settlements as s", "s.id", "p.settlement_id",)
+    .leftJoin("companyforms as c", "c.id", "p.companyform_id")
     .select(
       "p.id",
       "p.name",
-      "s.id as settlementsID",
-      "s.name as settlementsName"
-    )
-    //.orderBy('p.name', 'asc')
+      "c.name as companyform",
+      "p.tax_number",
+      "company_reg_number",
+      "s.name as settlements",
+      "p.address",
+      "p.phone_number",
+      "p.bank_account_number",
+      "p.comment"
+     );
+     //.orderBy('p.name', 'asc')
     ;
 }
 
-
-function findPartnerById(id) {
-  return db('partners')
-  .where({id})
+function findPartnerById(id){
+  return db('partners as p')
+  .where({ id })
   .first();
 }
-
 
 function removePartnerById(id){
   return db('partners')
@@ -100,17 +145,40 @@ function updatePartnerById(id, changes){
   });
 }
 
-
 function findSettlementPartners(settlement_id) {
     return db("settlements as s")
-      .join("partners as p", "s.id", "p.settlement_id")
+      .leftJoin("partners as p", "s.id", "p.settlement_id")
+      .leftJoin("companyforms as c", "c.id", "p.companyform_id")
       .select(
-        "s.id as settlementsID",
-        "s.name as settlementsName",
-        "p.id as partnerID",
-        "p.name as partnerName"
-      )
+        "p.id",
+        "p.name",
+        "c.name as companyform",
+        "p.tax_number",
+        "company_reg_number",
+        "s.name as settlements",
+        "p.address",
+        "p.phone_number",
+        "p.bank_account_number",
+        "p.comment"
+       )
       .where({ settlement_id });
   }
-  
-  
+
+  function findCompanyformPartners(companyform_id) {
+    return db("companyforms as c")
+      .leftJoin("partners as p", "c.id", "p.companyform_id")
+      .leftJoin("settlements as s", "s.id", "p.settlement_id")
+      .select(
+        "p.id",
+        "p.name",
+        "c.name as companyform",
+        "p.tax_number",
+        "company_reg_number",
+        "s.name as settlements",
+        "p.address",
+        "p.phone_number",
+        "p.bank_account_number",
+        "p.comment"
+      )
+      .where({ companyform_id });
+  }

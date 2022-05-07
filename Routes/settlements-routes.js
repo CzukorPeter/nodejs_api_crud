@@ -2,6 +2,7 @@ const express = require('express')
 
 const Settlements = require('../models/restHelpers');
 const Partners = require('../models/restHelpers');
+const Companyforms = require('../models/restHelpers');
 
 const router = express.Router();
 
