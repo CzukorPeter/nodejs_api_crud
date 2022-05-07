@@ -34,5 +34,37 @@ router.get('/:id', (req, res) => {
     });
 });
 
+//removePartnerById
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+    Partners.removePartnerById(id)
+    .then(count => {
+        if (count > 0) {
+            res.status(200).json({ message: "partner successfully deleted"})
+        } else {
+            res.status(404).json({ message: "cant find partner id to delete"})
+        }
+    })
+    .catch(error => {
+        res.status(500).json({ message: "cant delete id"})
+    });
+});
+
+//updatePartnerById
+router.patch('/:id', (req, res) => {
+    const { id } = req.params;
+    const changes = req.body;
+    Partners.updatePartnerById(id, changes)
+    .then(partner => {
+        if(partner) {
+            res.status(200).json({ partner })
+        } else {
+            res.status(404).json({ message: "cant find partner id to update"})
+        }
+    })
+    .catch(error => {
+        res.status(500).json({ message: "cant update id"})
+    });
+});
 
 module.exports = router;

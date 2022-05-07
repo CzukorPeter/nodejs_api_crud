@@ -3,11 +3,6 @@ const knex = require('knex');
 const config = require('../knexfile');
 const db = knex(config.development);
 
-//settlements
-//settlement
-//partners
-//partner
-
 module.exports = {
     addSettlement,
     findSettlements,
@@ -20,7 +15,13 @@ module.exports = {
     addPartner,
     findPartners,
     findPartnerById,
+    removePartnerById,
+    updatePartnerById,
 };
+
+
+//settlements
+//settlement
 
 async function addSettlement(settlement) {
   const [id] = await db('settlements').insert(settlement);
@@ -53,6 +54,8 @@ function updateSettlementById(id, changes){
 }
 
 
+//partners
+//partner
 
 async function addPartner(partner, settlement_id) {
   const [id] = await db('partners')
@@ -81,6 +84,21 @@ function findPartnerById(id) {
   .first();
 }
 
+
+function removePartnerById(id){
+  return db('partners')
+  .where({ id })
+  .del();
+}
+
+function updatePartnerById(id, changes){
+  return db('partners')
+  .where({ id })
+  .update(changes)
+  .then(() => {
+      return findPartnerById(id);
+  });
+}
 
 
 function findSettlementPartners(settlement_id) {
