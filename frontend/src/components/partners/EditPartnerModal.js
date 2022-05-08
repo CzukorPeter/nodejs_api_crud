@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const AddPartnerModal = () => {
+const EditPartnerModal = () => {
     const [name, setName] = useState('');
     const [companyform, setCompanyform] = useState('');
 /*     const [tax_number, setTax_number] = useState('');
@@ -27,9 +27,9 @@ const AddPartnerModal = () => {
     }
 
     return (
-    <div id="add-partner-modal" className='modal' style={modalStyle}>
+    <div id="edit-partner-modal" className='modal'>
         <div className='modal-content'>
-            <h4>Add Partner</h4>
+            <h4>Edit Partner</h4>
             <div className='row'>
                 <div className='row'>
                     <input type="text" name='name' value={name} onChange={e => setName(e.target.value)}>
@@ -72,10 +72,7 @@ const AddPartnerModal = () => {
     </div>
     )
 }
-// Ha nem kell torolheto majd
-const modalStyle = {
-    width: '75%',
-    height: '75%'
-  };
 
-export default AddPartnerModal
+
+
+export default EditPartnerModal

@@ -3,7 +3,7 @@ import React from "react";
 const AddActionBtn = () => {
     return (
     <div className="fixed-action-btn">
-        <a href="#!" className="btn-floating btn-large red lighten-2 model-trigger">
+        <a href="!#" className="btn-floating btn-large red lighten-2 modal-trigger">
             <i className="material-icons">library_add</i>
         </a>
         <ul>

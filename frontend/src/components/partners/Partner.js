@@ -6,7 +6,7 @@ const Partner = ({ partner }) => {
         <tbody>
           <tr>
             <td>{partner.id}</td>
-            <td><a href="#edit-partner-modal" className="red-text"><b>{partner.name}</b></a></td>
+            <td><a href="#edit-partner-modal" className="red-text modal-trigger"><b>{partner.name}</b></a></td>
             <td>{partner.companyform}</td>
             <td>{partner.tax_number}</td>
             <td>{partner.company_reg_number}</td>
@@ -21,7 +21,7 @@ const Partner = ({ partner }) => {
             </a>
             </td>
             <td>
-            <a href="!#" className="green-text">
+            <a href="#edit-partner-modal" className="green-text modal-trigger">
             <i className="material-icons">edit</i>
             </a>
             </td>
