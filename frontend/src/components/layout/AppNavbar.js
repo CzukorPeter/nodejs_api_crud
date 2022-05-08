@@ -4,7 +4,7 @@ const AppNavbar = () => {
     return (
     <nav>
         <div className="nav-wrapper">
-            <a href="#" classNameName="brand-logo center">
+            <a href="#" className="brand-logo center">
                 <i className="material-icons ">insert_chart</i>
                 Partner Organizer
             </a>
