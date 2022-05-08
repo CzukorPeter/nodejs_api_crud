@@ -14,7 +14,12 @@ const AddPartnerModal = () => {
     const [comment, setComment] = useState(''); */
 
     const onSubmit =() => {
-        console.log(name, companyform);
+        //kotelezo adatok validalas???
+        if(name === '' || companyform ==='') {
+            M.toast({ html: 'Partner name and company form are required!'})
+        } else{
+            console.log(name, companyform);
+        }     
     }
 
     return (
