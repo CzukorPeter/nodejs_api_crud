@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Partner  from "./Partner";
+import Preloader from "../layout/Preloader";
 
 const Partners = () => {
     const [partners, setPartners] = useState([]);
@@ -20,7 +21,7 @@ const Partners = () => {
     }
 
     if(loading) {
-        return <h2>Loading...</h2>
+        return <Preloader/>;
     }
 
     return (
