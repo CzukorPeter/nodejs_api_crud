@@ -4,8 +4,8 @@ const AppNavbar = () => {
     return (
     <nav>
         <div className="nav-wrapper">
-            <a href="#" className="brand-logo center">
-                <i className="material-icons ">insert_chart</i>
+            <a href="#!" className="brand-logo center">
+                <i className="material-icons ">assignment_ind</i>
                 Partner Organizer
             </a>
             <ul id="nav-mobile" className="left hide-on-med-and-down">
