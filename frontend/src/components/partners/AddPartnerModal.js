@@ -20,7 +20,7 @@ const AddPartnerModal = () => {
     return (
     <div id='add-partner-modal' className='modal'>
         <div className='modal-content'>
-            <h4>Add Partners</h4>
+            <h4>Add Partner</h4>
             <div className='row'>
                 <div className='row'>
                     <input type="text" name='name' value={name} onChange={e => setName(e.target.value)}>
