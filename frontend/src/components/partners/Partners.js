@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Partner  from "./Partner";
 import Preloader from "../layout/Preloader";
+import * as XLSX from "xlsx";
 
 const Partners = () => {
     const [partners, setPartners] = useState([]);
@@ -20,6 +21,16 @@ const Partners = () => {
         setLoading(false);
     }
 
+
+    const handleOnExport = () => {
+        console.log(partners)
+
+        var wb = XLSX.utils.book_new(),
+        ws = XLSX.utils.json_to_sheet(partners);
+        XLSX.utils.book_append_sheet(wb, ws, "PartnersSheet");
+        XLSX.writeFile(wb, "Partners.xlsx")
+    };
+
     if(loading) {
         return <Preloader/>;
     }
@@ -27,6 +38,11 @@ const Partners = () => {
     return (
     <div className="">
         <h4 className="center">Partners</h4>
+
+        <button onClick={handleOnExport} className='modal-close waves-effect green lighten-2 waves-light btn'
+        >Export to Xlsx
+        <i class="material-icons right">cloud_download</i>
+        </button>
         <table className="centered">
         <thead>
           <tr>
