@@ -1,39 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { connect } from 'react-redux';
 import Partner  from "./Partner";
 import Preloader from "../layout/Preloader";
+import PropTypes from 'prop-types';
+import { getPartners } from "../../actions/partnerActions";
+
 import * as XLSX from "xlsx";
 
-const Partners = () => {
-    const [partners, setPartners] = useState([]);
-    const [loading, setLoading] = useState(false);
 
+const Partners = ({ partner: { partners, loading }, getPartners }) => {
     useEffect(() => {
         getPartners();
+      // eslint-disable-next-line
+    }, []);
 
-    },[]);
 
-    const getPartners = async () => {
-        setLoading(true);
-        const res = await fetch('/partners');
-        const data = await res.json();
-
-        setPartners(data);
-        setLoading(false);
-    }
-
+    if (loading || partners === null) {
+        return <Preloader />;
+      }
 
     const handleOnExport = () => {
-        console.log(partners)
-
         var wb = XLSX.utils.book_new(),
         ws = XLSX.utils.json_to_sheet(partners);
         XLSX.utils.book_append_sheet(wb, ws, "PartnersSheet");
         XLSX.writeFile(wb, "Partners.xlsx")
     };
-
-    if(loading) {
-        return <Preloader/>;
-    }
 
     return (
     <div className="">
@@ -67,4 +58,17 @@ const Partners = () => {
     )
 };
 
-export default Partners
+
+Partners.propTypes = {
+    partner: PropTypes.object.isRequired,
+    getPartners: PropTypes.func.isRequired
+  };
+  
+  const mapStateToProps = state => ({
+    partner: state.partner
+  });
+
+export default connect(
+    mapStateToProps,
+    { getPartners }
+  )(Partners);
