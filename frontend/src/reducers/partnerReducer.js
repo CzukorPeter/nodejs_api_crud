@@ -26,6 +26,12 @@ const initialState = {
         partners: action.payload,
         loading: false
       };
+      case ADD_PARTNER:
+        return {
+          ...state,
+          partners: [...state.partners, action.payload],
+          loading: false
+        };
       case SET_LOADING:
       return {
         ...state,

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addPartner } from '../../actions/partnerActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const AddPartnerModal = () => {
+const AddPartnerModal = ({ addPartner }) => {
     const [name, setName] = useState('');
-    const [companyform, setCompanyform] = useState('');
+    const [companyform_id, setCompanyform] = useState('');
+    const [settlement_id, setSettlement] = useState('');
 /*     const [tax_number, setTax_number] = useState('');
     const [company_reg_number, setCompany_reg_number] = useState('');
     const [settlements, setSettlements] = useState('');
@@ -14,15 +17,24 @@ const AddPartnerModal = () => {
     const [comment, setComment] = useState(''); */
 
     const onSubmit =() => {
-        //kotelezo adatok validalas???
-        if(name === '' || companyform ==='') {
+        
+        if(name === '' || companyform_id ===''|| settlement_id ==='') {
             M.toast({ html: 'Partner name and company form are required!'})
         } else{
-            console.log(name, companyform);
+            const newPartner = {
+                name,
+                companyform_id,
+                settlement_id
+            }
+
+            addPartner(newPartner);
+
+            M.toast({ html: 'New Partner added!' })
 
             //Clear Fields
             setName('');
             setCompanyform('');
+            setSettlement('')
         }     
     }
 
@@ -39,20 +51,30 @@ const AddPartnerModal = () => {
                     </label>              
                 </div>
             </div>
-            <div className='row'>
-                
- 
-                <select name='companyform' value={companyform} className='browser-default' onChange={e => setCompanyform(e.target.value)}>
-                
+            <div className='row'> 
+                <select name='companyform' value={companyform_id} className='browser-default' onChange={e => setCompanyform(e.target.value)}>                
                 <option value="" disabled selected>Select Company Form</option>
                 <option value="1">Vállalat</option>
                 <option value="2">Korlátolt felelősségű társaság</option>
-                <option value="3">Betéti társaság</option>
-                
+                <option value="3">Betéti társaság</option>                
                 </select>
                 <label>Choose your option</label>
             </div>
+            <div className='row'> 
+                <select name='companyform' value={settlement_id} className='browser-default' onChange={e => setSettlement(e.target.value)}>                
+                <option value="" disabled selected>Select Settlement</option>
+                <option value="1">Karcag</option>
+                <option value="2">Győr</option>
+                <option value="3">Pécs</option>                
+                </select>
+                <label>Choose your option</label>
+            </div>
+
+
+
         </div>
+
+
         <div className='moda-footer'>
         <div className='row'>
         <div class="col s3">
@@ -72,10 +94,14 @@ const AddPartnerModal = () => {
     </div>
     )
 }
-// Ha nem kell torolheto majd
+
 const modalStyle = {
     width: '75%',
     height: '75%'
   };
 
-export default AddPartnerModal
+AddPartnerModal.propTypes = {
+    addPartner: PropTypes.func.isRequired
+  };
+
+export default connect(null, { addPartner })(AddPartnerModal);

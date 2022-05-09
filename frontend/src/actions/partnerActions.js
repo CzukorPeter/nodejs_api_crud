@@ -31,6 +31,32 @@ export const getPartners = () => async dispatch => {
     }
   };
 
+  // Add new partner
+export const addPartner = partner => async dispatch => {
+  try {
+    setLoading();
+
+    const res = await fetch('/partners', {
+      method: 'POST',
+      body: JSON.stringify(partner),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await res.json();
+
+    dispatch({
+      type: ADD_PARTNER,
+      payload: data
+    });
+  } catch (err) {
+    dispatch({
+      type: PARTNERS_ERROR,
+      payload: err.response.statusText
+    });
+  }
+};
+
 // Set loading to true
 export const setLoading = () => {
     return {
