@@ -57,6 +57,27 @@ export const addPartner = partner => async dispatch => {
   }
 };
 
+// Delete log from server
+export const deletePartner = id => async dispatch => {
+  try {
+    setLoading();
+
+    await fetch(`/partners/${id}`, {
+      method: 'DELETE'
+    });
+
+    dispatch({
+      type: DELETE_PARTNER,
+      payload: id
+    });
+  } catch (err) {
+    dispatch({
+      type: PARTNERS_ERROR,
+      payload: err.response.statusText
+    });
+  }
+};
+
 // Set loading to true
 export const setLoading = () => {
     return {

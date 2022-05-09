@@ -1,7 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+import { deletePartner } from '../../actions/partnerActions';
+import M from 'materialize-css/dist/js/materialize.min.js';
 
-const Partner = ({ partner }) => {
+const Partner = ({ partner, deletePartner }) => {
+  const onDelete = () => {
+    deletePartner(partner.id);
+    M.toast({ html: 'Partner deleted!' });
+    window.location.reload(false)
+  }
+
+
+
     return (
           <tbody>
           <tr>
@@ -16,7 +27,7 @@ const Partner = ({ partner }) => {
             <td>{partner.bank_account_number}</td>
             <td>{partner.comment}</td>
             <td>
-            <a href="!#" className="red-text">
+            <a href="#!" onClick={onDelete} className="red-text">
             <i className="material-icons">delete</i>
             </a>
             </td>
@@ -33,6 +44,7 @@ const Partner = ({ partner }) => {
 
 Partner.propTypes = {
     partner: PropTypes.object.isRequired,
+    deletePartner: PropTypes.func.isRequired,
 }
 
-export default Partner
+export default connect(null, { deletePartner })(Partner);

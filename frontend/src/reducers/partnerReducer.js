@@ -32,18 +32,24 @@ const initialState = {
           partners: [...state.partners, action.payload],
           loading: false
         };
+      case DELETE_PARTNER:
+        return {
+          ...state,
+          logs: state.partners.filter(partner => partner.id !== action.payload),
+          loading: false
+        };
       case SET_LOADING:
       return {
         ...state,
         loading: true
       };
-    case PARTNERS_ERROR:
-      console.error(action.payload);
-      return {
-        ...state,
-        error: action.payload
-      };
-      default:
-        return state
-    }
+      case PARTNERS_ERROR:
+        console.error(action.payload);
+        return {
+          ...state,
+          error: action.payload
+        };
+        default:
+          return state
+      }
   };
