@@ -27,14 +27,14 @@ const Partners = ({ partner: { partners, loading }, getPartners }) => {
     };
 
     return (
-    <div className="">
+    <div className="container">
         <h4 className="center">Partners</h4>
 
         <button onClick={handleOnExport} className='modal-close waves-effect green lighten-2 waves-light btn'
         >Export to Xlsx
         <i class="material-icons right">cloud_download</i>
         </button>
-        <table className="centered">
+        <table className="centered responsive-table">
         <thead>
           <tr>
               <th>#Id</th>
