@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import SettlementSelectOptions from '../settlements/SettlementSelectOptions';
 import PropTypes from 'prop-types';
 import { updatePartner } from '../../actions/partnerActions';
 
@@ -71,14 +72,17 @@ const EditPartnerModal = ({ current, updatePartner }) => {
                 </label>     
             </div>
 
-            <div className='row'>
-                <input type="text" name='settlement_id' value={settlement_id} onChange={e => setSettlement(parseFloat(e.target.value))}
-                >
-                </input>
-                    <label htmlFor='settlement_id' className='active'>
-                    Settlement
-                </label>  
+
+            <div className='row'> 
+                <select name='settlement' value={settlement_id} className='browser-default' onChange={e => setSettlement(e.target.value)}>                
+                <option value="" disabled selected>Choose Settlement</option>
+                <SettlementSelectOptions />              
+                </select>
+                <label>Choose your option</label>
             </div>
+
+
+
         </div>
         <div className='moda-footer'>
         <div className='row'>

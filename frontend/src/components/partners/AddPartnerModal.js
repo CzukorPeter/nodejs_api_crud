@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import SettlementSelectOptions from '../settlements/SettlementSelectOptions';
 import { addPartner } from '../../actions/partnerActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
@@ -29,6 +30,7 @@ const AddPartnerModal = ({ addPartner }) => {
             addPartner(newPartner);
 
             M.toast({ html: 'New Partner added!' })
+            window.location.reload(false)
 
             //Clear Fields
             setName('');
@@ -62,9 +64,7 @@ const AddPartnerModal = ({ addPartner }) => {
             <div className='row'> 
                 <select name='settlement' value={settlement_id} className='browser-default' onChange={e => setSettlement(e.target.value)}>                
                 <option value="" disabled selected>Select Settlement</option>
-                <option value="1">Karcag</option>
-                <option value="2">Győr</option>
-                <option value="3">Pécs</option>                
+                <SettlementSelectOptions />              
                 </select>
                 <label>Choose your option</label>
             </div>

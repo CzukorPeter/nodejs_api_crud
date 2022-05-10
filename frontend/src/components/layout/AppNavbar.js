@@ -12,7 +12,10 @@ const AppNavbar = ({ }) => {
                 Partner Organizer
             </a>
             <ul id="nav-mobile" className="left hide-on-med-and-down">
-                <li><a href="#">PartnersGroupBySettlements</a></li>
+                <li>
+                    <a href="#add-settlement-modal" className=" green modal-trigger">
+                        PartnersGroupBySettlements</a>
+                </li>
                 <li><a href="#">PartnersGroupByCompanyForms</a></li>
             </ul>
         </div>
@@ -21,4 +24,4 @@ const AppNavbar = ({ }) => {
 }
 
   
-export default connect(null,{ })(AppNavbar);
+export default AppNavbar;

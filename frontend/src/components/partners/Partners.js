@@ -34,6 +34,8 @@ const Partners = ({ partner: { partners, loading }, getPartners }) => {
         >Export to Xlsx
         <i class="material-icons right">cloud_download</i>
         </button>
+
+        
         <table className="centered responsive-table">
         <thead>
           <tr>
