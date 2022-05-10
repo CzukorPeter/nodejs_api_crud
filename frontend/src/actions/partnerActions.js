@@ -6,9 +6,8 @@ SET_CURRENT,
 CLEAR_CURRENT,
 UPDATE_PARTNER,
 SET_LOADING,
-PARTNERS_ERROR,
-SEARCH_PARTNERS,
-  } from './types';
+PARTNERS_ERROR
+} from './types';
 
 // Get partners from server
 export const getPartners = () => async dispatch => {
@@ -94,26 +93,6 @@ export const updatePartner = partner => async dispatch => {
 
     dispatch({
       type: UPDATE_PARTNER,
-      payload: data
-    });
-  } catch (err) {
-    dispatch({
-      type: PARTNERS_ERROR,
-      payload: err.response.statusText
-    });
-  }
-};
-
-// Search server partners
-export const searchPartners = text => async dispatch => {
-  try {
-    setLoading();
-
-    const res = await fetch(`?search=${text}`);
-    const data = await res.json();
-
-    dispatch({
-      type: SEARCH_PARTNERS,
       payload: data
     });
   } catch (err) {

@@ -5,11 +5,9 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_PARTNER,
-  CLEAR_PARTNERS,
   SET_LOADING,
   PARTNERS_ERROR,
-  SEARCH_PARTNERS,
-    } from '../actions/types';
+ } from '../actions/types';
 
 const initialState = {
     partners: null,
@@ -45,11 +43,6 @@ const initialState = {
             partner.id === partner.payload.id ? action.payload : partner
           )
         };
-        case SEARCH_PARTNERS:
-          return {
-            ...state,
-            partners: action.payload
-          };
       case SET_CURRENT:
         return {
           ...state,
