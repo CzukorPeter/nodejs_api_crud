@@ -1,3 +1,6 @@
+
+// torolni az egeszet es letisztitani a kodot
+
 const express = require('express')
 
 const Settlements = require('../models/restHelpers');
@@ -12,7 +15,16 @@ const router = express.Router();
   
 // Assign route
 router.use('/', (req, res) => {
-    console.log(req.query);
+    //console.log(req.query);
+    const {search} = req.query
+    let sortedPartners = [...Partners]
+    
+if(search){
+    sortedPartners = sortedPartners.filter((partner)=>{
+        return partner.name.startWith(search)
+    })
+}
+res.status(200).json(sortedPartners)
     res.send('TEST')
 });
 
