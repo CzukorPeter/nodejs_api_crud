@@ -57,7 +57,7 @@ export const addPartner = partner => async dispatch => {
   }
 };
 
-// Delete log from server
+// Delete partner from server
 export const deletePartner = id => async dispatch => {
   try {
     setLoading();
@@ -76,6 +76,48 @@ export const deletePartner = id => async dispatch => {
       payload: err.response.statusText
     });
   }
+};
+
+// Update partner on server
+export const updatePartner = partner => async dispatch => {
+  try {
+    setLoading();
+
+    const res = await fetch(`/partners/${partner.id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(partner),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const data = await res.json();
+
+    dispatch({
+      type: UPDATE_PARTNER,
+      payload: data
+    });
+  } catch (err) {
+    dispatch({
+      type: PARTNERS_ERROR,
+      payload: err.response.statusText
+    });
+  }
+};
+
+// Set current partner
+export const setCurrent = partner => {
+  return {
+    type: SET_CURRENT,
+    payload: partner
+  };
+};
+
+// Clear current partner
+export const clearCurrent = () => {
+  return {
+    type: CLEAR_CURRENT
+  };
 };
 
 // Set loading to true

@@ -35,21 +35,38 @@ const initialState = {
       case DELETE_PARTNER:
         return {
           ...state,
-          logs: state.partners.filter(partner => partner.id !== action.payload),
+          partners: state.partners.filter(partner => partner.id !== action.payload),
           loading: false
         };
-      case SET_LOADING:
+      case UPDATE_PARTNER:
+        return {
+          ...state,
+          partners: state.partners.map(partner =>
+            partner.id === partner.payload.id ? action.payload : partner
+          )
+        };
+      case SET_CURRENT:
+        return {
+          ...state,
+          current: action.payload
+        };
+      case CLEAR_CURRENT:
+        return {
+          ...state,
+          current: null
+        };
+    case SET_LOADING:
       return {
         ...state,
         loading: true
       };
-      case PARTNERS_ERROR:
-        console.error(action.payload);
-        return {
-          ...state,
-          error: action.payload
-        };
-        default:
-          return state
-      }
+    case PARTNERS_ERROR:
+      console.error(action.payload);
+      return {
+        ...state,
+        error: action.payload
+      };
+      default:
+        return state
+    }
   };

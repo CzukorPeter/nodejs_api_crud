@@ -13,7 +13,7 @@ exports.up = function(knex) {
         table.text('name');
         table.integer('companyform_id')
              .unsigned()
-             .notNullable()
+             //.notNullable()
              .references('id')
              .inTable('companyforms')
              .onDelete('CASCADE')
@@ -22,7 +22,7 @@ exports.up = function(knex) {
         table.text('company_reg_number');
         table.integer('settlement_id')
              .unsigned()
-             .notNullable()
+             //.notNullable()
              .references('id')
              .inTable('settlements')
              .onDelete('CASCADE')

@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
-import { deletePartner } from '../../actions/partnerActions';
+import { deletePartner, setCurrent } from '../../actions/partnerActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const Partner = ({ partner, deletePartner }) => {
+const Partner = ({ partner, deletePartner, setCurrent }) => {
   const onDelete = () => {
     deletePartner(partner.id);
     M.toast({ html: 'Partner deleted!' });
-    window.location.reload(false)
   }
 
 
@@ -17,7 +16,9 @@ const Partner = ({ partner, deletePartner }) => {
           <tbody>
           <tr>
             <td>{partner.id}</td>
-            <td><a href="#edit-partner-modal" className="red-text modal-trigger"><b>{partner.name}</b></a></td>
+            <td><a href="#edit-partner-modal" className="red-text modal-trigger"
+              onClick={() => setCurrent(partner)}
+            ><b>{partner.name}</b></a></td>
             <td>{partner.companyform}</td>
             <td>{partner.tax_number}</td>
             <td>{partner.company_reg_number}</td>
@@ -33,7 +34,9 @@ const Partner = ({ partner, deletePartner }) => {
             </td>
             <td>
             <a href="#edit-partner-modal" className="green-text modal-trigger">
-            <i className="material-icons">edit</i>
+            <i className="material-icons"
+              onClick={() => setCurrent(partner)}
+            >edit</i>
             </a>
             </td>
           </tr>
@@ -45,6 +48,7 @@ const Partner = ({ partner, deletePartner }) => {
 Partner.propTypes = {
     partner: PropTypes.object.isRequired,
     deletePartner: PropTypes.func.isRequired,
+    setCurrent: PropTypes.func.isRequired,
 }
 
-export default connect(null, { deletePartner })(Partner);
+export default connect(null, { deletePartner, setCurrent })(Partner);

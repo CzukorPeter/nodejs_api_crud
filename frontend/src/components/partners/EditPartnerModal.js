@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { updatePartner } from '../../actions/partnerActions';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const EditPartnerModal = () => {
+const EditPartnerModal = ({ current, updatePartner }) => {
     const [name, setName] = useState('');
-    const [companyform, setCompanyform] = useState('');
+    const [companyform_id, setCompanyform] = useState('');
+    const [settlement_id, setSettlement] = useState('');
 /*     const [tax_number, setTax_number] = useState('');
     const [company_reg_number, setCompany_reg_number] = useState('');
     const [settlements, setSettlements] = useState('');
@@ -13,16 +17,34 @@ const EditPartnerModal = () => {
     const [bank_account_number, setBank_account_number] = useState('');
     const [comment, setComment] = useState(''); */
 
+    useEffect(() => {
+        if (current) {
+            setName(current.name);
+            setCompanyform(current.companyform_id);
+            setSettlement(current.settlement_id);
+        }
+      }, [current]);
+
     const onSubmit =() => {
-        //kotelezo adatok validalas???
-        if(name === '' || companyform ==='') {
+        if(name === '' || companyform_id ==='' || settlement_id==='') {
             M.toast({ html: 'Partner name and company form are required!'})
         } else{
-            console.log(name, companyform);
+
+            const updPartner = {
+                id: current.id,
+                name,
+                companyform_id,
+                settlement_id,
+              };
+        
+              updatePartner(updPartner);
+              M.toast({ html: 'Partner updated ' });
+              window.location.reload(false)
 
             //Clear Fields
             setName('');
             setCompanyform('');
+            setSettlement('');
         }     
     }
 
@@ -39,18 +61,23 @@ const EditPartnerModal = () => {
                     </label>              
                 </div>
             </div>
+
+            <div className='row'> 
+                <input type="text" name='companyform_id' value={companyform_id} onChange={e => setCompanyform(parseFloat(e.target.value))}
+                >
+                </input>
+                    <label htmlFor='companyform_id' className='active'>
+                    Company Form
+                </label>     
+            </div>
+
             <div className='row'>
-                
- 
-                <select name='companyform' value={companyform} className='browser-default' onChange={e => setCompanyform(e.target.value)}>
-                
-                <option value="" disabled selected>Select Company Form</option>
-                <option value="1">Vállalat</option>
-                <option value="2">Korlátolt felelősségű társaság</option>
-                <option value="3">Betéti társaság</option>
-                
-                </select>
-                <label>Choose your option</label>
+                <input type="text" name='settlement_id' value={settlement_id} onChange={e => setSettlement(parseFloat(e.target.value))}
+                >
+                </input>
+                    <label htmlFor='settlement_id' className='active'>
+                    Settlement
+                </label>  
             </div>
         </div>
         <div className='moda-footer'>
@@ -73,6 +100,13 @@ const EditPartnerModal = () => {
     )
 }
 
-
-
-export default EditPartnerModal
+EditPartnerModal.propTypes = {
+    current: PropTypes.object,
+    updatePartner: PropTypes.func.isRequired
+  };
+  
+  const mapStateToProps = state => ({
+    current: state.partner.current
+  });
+  
+  export default connect(mapStateToProps,{ updatePartner })(EditPartnerModal);

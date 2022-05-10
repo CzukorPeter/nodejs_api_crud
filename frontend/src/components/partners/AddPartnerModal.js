@@ -10,7 +10,6 @@ const AddPartnerModal = ({ addPartner }) => {
     const [settlement_id, setSettlement] = useState('');
 /*     const [tax_number, setTax_number] = useState('');
     const [company_reg_number, setCompany_reg_number] = useState('');
-    const [settlements, setSettlements] = useState('');
     const [address, setAddress] = useState('');
     const [phone_number, setPhone_number] = useState('');
     const [bank_account_number, setBank_account_number] = useState('');
@@ -61,7 +60,7 @@ const AddPartnerModal = ({ addPartner }) => {
                 <label>Choose your option</label>
             </div>
             <div className='row'> 
-                <select name='companyform' value={settlement_id} className='browser-default' onChange={e => setSettlement(e.target.value)}>                
+                <select name='settlement' value={settlement_id} className='browser-default' onChange={e => setSettlement(e.target.value)}>                
                 <option value="" disabled selected>Select Settlement</option>
                 <option value="1">Karcag</option>
                 <option value="2">Győr</option>
