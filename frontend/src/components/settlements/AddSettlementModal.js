@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
-
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addSettlement } from '../../actions/settlementActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const AddSettlementModal = () => {
+const AddSettlementModal = ({ addSettlement }) => {
     const [name, setName] = useState('');
 
     const onSubmit =() => {
-        //kotelezo adatok validalas???
+
         if(name === '') {
             M.toast({ html: 'Settlement name are required!'})
         } else{
-            console.log(name);
+            const newSettlement = {
+                name
+            }
+
+            addSettlement(newSettlement);
+
+            M.toast({ html: 'New settlement added!'})
+            window.location.reload(false)
 
             //Clear Fields
             setName('');
@@ -41,4 +50,9 @@ const AddSettlementModal = () => {
     )
 }
 
-export default AddSettlementModal
+AddSettlementModal.propTypes = {
+    addSettlement: PropTypes.func.isRequired
+  };
+
+export default connect(null, { addSettlement })(AddSettlementModal);
+
