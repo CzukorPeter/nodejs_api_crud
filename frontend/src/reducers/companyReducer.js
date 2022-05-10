@@ -1,29 +1,29 @@
 import { 
-    GET_SETTLEMENTS, 
-    ADD_SETTLEMENT, 
+    GET_COMPANYFORMS, 
+    ADD_COMPANYFORM, 
     SET_LOADING, 
-    SETTLEMENTS_ERROR
+    COMPANYFORMS_ERROR
  } from "../actions/types";
 
 
 const initialState = {
-    settlements: null,
+    companyforms: null,
     loading: false,
     error: null
   };
 
   export default (state = initialState, action) => {
     switch (action.type) {
-        case GET_SETTLEMENTS:
+        case GET_COMPANYFORMS:
           return {
             ...state,
-            settlements: action.payload,
+            companyforms: action.payload,
             loading: false
           };
-        case ADD_SETTLEMENT:
+        case ADD_COMPANYFORM:
           return {
             ...state,
-            settlements: [...state.settlements, action.payload],
+            companyforms: [...state.companyforms, action.payload],
             loading: false
           };
         case SET_LOADING:
@@ -31,7 +31,7 @@ const initialState = {
             ...state,
             loading: true
           };
-        case SETTLEMENTS_ERROR:
+        case COMPANYFORMS_ERROR:
           console.error(action.payload);
           return {
             ...state,

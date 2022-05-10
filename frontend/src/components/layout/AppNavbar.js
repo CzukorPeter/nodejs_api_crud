@@ -1,6 +1,4 @@
-import React, { useRef } from 'react';
-import { connect } from 'react-redux';
-
+import React from 'react';
 
 const AppNavbar = ({ }) => {
       
@@ -11,17 +9,9 @@ const AppNavbar = ({ }) => {
                 <i className="material-icons ">assignment_ind</i>
                 Partner Organizer
             </a>
-            <ul id="nav-mobile" className="left hide-on-med-and-down">
-                <li>
-                    <a href="#add-settlement-modal" className=" green modal-trigger">
-                        PartnersGroupBySettlements</a>
-                </li>
-                <li><a href="#">PartnersGroupByCompanyForms</a></li>
-            </ul>
         </div>
       </nav>
     )
 }
-
   
 export default AppNavbar;

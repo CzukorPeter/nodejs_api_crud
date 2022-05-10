@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import SettlementSelectOptions from '../settlements/SettlementSelectOptions';
+import CompanyformSelectOptions from '../companyforms/CompanyformSelectOptions';
 import PropTypes from 'prop-types';
 import { updatePartner } from '../../actions/partnerActions';
 
@@ -64,12 +65,11 @@ const EditPartnerModal = ({ current, updatePartner }) => {
             </div>
 
             <div className='row'> 
-                <input type="text" name='companyform_id' value={companyform_id} onChange={e => setCompanyform(parseFloat(e.target.value))}
-                >
-                </input>
-                    <label htmlFor='companyform_id' className='active'>
-                    Company Form
-                </label>     
+                <select name='companyform_id' value={companyform_id} className='browser-default' onChange={e => setCompanyform(parseFloat(e.target.value))}>                
+                <option value="" disabled selected>Choose Company Form</option>
+                <SettlementSelectOptions />              
+                </select>
+                <label>Choose your option</label>
             </div>
 
 
@@ -86,16 +86,16 @@ const EditPartnerModal = ({ current, updatePartner }) => {
         </div>
         <div className='moda-footer'>
         <div className='row'>
-        <div class="col s3">
+        <div className="col s3">
         <button href='#!' onClick={onSubmit} className='modal-close waves-effect red waves-light btn'
         >Enter
-        <i class="material-icons right">send</i>
+        <i className="material-icons right">send</i>
         </button>
         </div>
-        <div class="col s5">
+        <div className="col s5">
         <button href='#add-settlement-modal' onClick={onSubmit} className='modal-close waves-effect green waves-light btn modal-trigger'
         >Add New Settlement
-        <i class="material-icons right">location_on</i>
+        <i className="material-icons right">location_on</i>
         </button>
         </div>
         </div>

@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const AddSettlementModal = () => {
+const addCompanyformModal = () => {
     const [name, setName] = useState('');
 
     const onSubmit =() => {
         //kotelezo adatok validalas???
         if(name === '') {
-            M.toast({ html: 'Settlement name are required!'})
+            M.toast({ html: 'Company form name are required!'})
         } else{
-            console.log(name);
 
             //Clear Fields
             setName('');
@@ -18,15 +17,15 @@ const AddSettlementModal = () => {
     }
 
     return (
-    <div id="add-settlement-modal" className='modal'>
+    <div id="add-companyform-modal" className='modal'>
         <div className='modal-content'>
-            <h4>Add Settlement</h4>
+            <h4>Add Company form</h4>
             <div className='row'>
                 <div className='row'>
                     <input type="text" name='name' value={name} onChange={e => setName(e.target.value)}>
                     </input>
                     <label htmlFor='name' className='active'>
-                        Settlement Name
+                        Company form Name
                     </label>              
                 </div>
             </div>
@@ -41,4 +40,4 @@ const AddSettlementModal = () => {
     )
 }
 
-export default AddSettlementModal
+export default addCompanyformModal

@@ -18,7 +18,7 @@ const SettlementListModal = ({ settlement: { settlements, loading }, getSettleme
     <div id="list-settlement-modal" className='modal'>
 
       <div className='modal-content'>
-        <h4>Technician List</h4>
+        <h4>Settlements List</h4>
         <ul className='collection'>
           {!loading &&
             settlements !== null &&

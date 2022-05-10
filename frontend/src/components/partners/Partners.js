@@ -32,7 +32,7 @@ const Partners = ({ partner: { partners, loading }, getPartners }) => {
 
         <button onClick={handleOnExport} className='modal-close waves-effect green lighten-2 waves-light btn'
         >Export to Xlsx
-        <i class="material-icons right">cloud_download</i>
+        <i className="material-icons right">cloud_download</i>
         </button>
 
         

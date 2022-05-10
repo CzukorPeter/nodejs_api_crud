@@ -1,38 +1,38 @@
 import { 
-    GET_SETTLEMENTS, 
-    ADD_SETTLEMENT, 
-    SET_LOADING, 
-    SETTLEMENTS_ERROR
+  GET_COMPANYFORMS, 
+  ADD_COMPANYFORM, 
+  SET_LOADING, 
+  COMPANYFORMS_ERROR
  } from "./types";
 
 
-// Get SETTLEMENTS from server
-export const getSettlements = () => async dispatch => {
+// Get company forms from server
+export const getCompanyforms = () => async dispatch => {
     try {
       setLoading();
   
-      const res = await fetch('/settlements');
+      const res = await fetch('/companyforms');
       const data = await res.json();
   
       dispatch({
-        type: GET_SETTLEMENTS,
+        type: GET_COMPANYFORMS,
         payload: data
       });
     } catch (err) {
       dispatch({
-        type: SETTLEMENTS_ERROR,
+        type: COMPANYFORMS_ERROR,
         payload: err.response.statusText
       });
     }
   };
-// Add new settlement
-export const addSettlement = settlement => async dispatch => {
+  // Add new company form
+export const addCompanyform = companyform => async dispatch => {
   try {
     setLoading();
 
-    const res = await fetch('/settlements', {
+    const res = await fetch('/companyforms', {
       method: 'POST',
-      body: JSON.stringify(settlement),
+      body: JSON.stringify(companyform),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -40,16 +40,17 @@ export const addSettlement = settlement => async dispatch => {
     const data = await res.json();
 
     dispatch({
-      type: ADD_SETTLEMENT,
+      type: ADD_COMPANYFORM,
       payload: data
     });
   } catch (err) {
     dispatch({
-      type: SETTLEMENTS_ERROR,
+      type: COMPANYFORMS_ERROR,
       payload: err.response.statusText
     });
   }
 };
+
 
  // Set loading to true
 export const setLoading = () => {

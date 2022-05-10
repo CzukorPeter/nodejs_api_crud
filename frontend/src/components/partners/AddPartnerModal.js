@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SettlementSelectOptions from '../settlements/SettlementSelectOptions';
+import CompanyformSelectOptions from '../companyforms/CompanyformSelectOptions';
 import { addPartner } from '../../actions/partnerActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
@@ -55,9 +56,7 @@ const AddPartnerModal = ({ addPartner }) => {
             <div className='row'> 
                 <select name='companyform' value={companyform_id} className='browser-default' onChange={e => setCompanyform(e.target.value)}>                
                 <option value="" disabled selected>Select Company Form</option>
-                <option value="1">Vállalat</option>
-                <option value="2">Korlátolt felelősségű társaság</option>
-                <option value="3">Betéti társaság</option>                
+                <CompanyformSelectOptions />             
                 </select>
                 <label>Choose your option</label>
             </div>
@@ -76,18 +75,18 @@ const AddPartnerModal = ({ addPartner }) => {
 
         <div className='moda-footer'>
         <div className='row'>
-        <div class="col s3">
+        
         <button href='#!' onClick={onSubmit} className='modal-close waves-effect red waves-light btn'
         >Enter
-        <i class="material-icons right">send</i>
+        <i className="material-icons right">send</i>
         </button>
-        </div>
-        <div class="col s5">
+        
+        <br></br>
+        <br></br>
         <button href='#add-settlement-modal' onClick={onSubmit} className='modal-close waves-effect green waves-light btn modal-trigger'
         >Add New Settlement
-        <i class="material-icons right">location_on</i>
-        </button>
-        </div>
+        <i className="material-icons right">location_on</i>
+        </button>        
         </div>
         </div>
     </div>
