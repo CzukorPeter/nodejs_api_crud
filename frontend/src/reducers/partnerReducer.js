@@ -45,6 +45,11 @@ const initialState = {
             partner.id === partner.payload.id ? action.payload : partner
           )
         };
+        case SEARCH_PARTNERS:
+          return {
+            ...state,
+            partners: action.payload
+          };
       case SET_CURRENT:
         return {
           ...state,
