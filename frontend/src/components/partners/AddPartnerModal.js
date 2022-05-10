@@ -10,12 +10,12 @@ const AddPartnerModal = ({ addPartner }) => {
     const [name, setName] = useState('');
     const [companyform_id, setCompanyform] = useState('');
     const [settlement_id, setSettlement] = useState('');
-/*     const [tax_number, setTax_number] = useState('');
+    const [tax_number, setTax_number] = useState('');
     const [company_reg_number, setCompany_reg_number] = useState('');
     const [address, setAddress] = useState('');
     const [phone_number, setPhone_number] = useState('');
     const [bank_account_number, setBank_account_number] = useState('');
-    const [comment, setComment] = useState(''); */
+    const [comment, setComment] = useState('');
 
     const onSubmit =() => {
         
@@ -25,7 +25,13 @@ const AddPartnerModal = ({ addPartner }) => {
             const newPartner = {
                 name,
                 companyform_id,
-                settlement_id
+                tax_number,
+                company_reg_number,
+                settlement_id,
+                address,
+                phone_number,
+                bank_account_number,
+                comment
             }
 
             addPartner(newPartner);
@@ -36,14 +42,20 @@ const AddPartnerModal = ({ addPartner }) => {
             //Clear Fields
             setName('');
             setCompanyform('');
-            setSettlement('')
+            setTax_number('');
+            setCompany_reg_number('');
+            setSettlement('');
+            setAddress('');
+            setPhone_number('');
+            setBank_account_number('');
+            setComment('');
         }     
     }
 
     return (
     <div id="add-partner-modal" className='modal' style={modalStyle}>
         <div className='modal-content'>
-            <h4>Add Partner</h4>
+            <h4 className='center'>Add Partner Details</h4>
             <div className='row'>
                 <div className='row'>
                     <input type="text" name='name' value={name} onChange={e => setName(e.target.value)}>
@@ -53,6 +65,7 @@ const AddPartnerModal = ({ addPartner }) => {
                     </label>              
                 </div>
             </div>
+
             <div className='row'> 
                 <select name='companyform' value={companyform_id} className='browser-default' onChange={e => setCompanyform(e.target.value)}>                
                 <option value="" disabled selected>Select Company Form</option>
@@ -60,12 +73,73 @@ const AddPartnerModal = ({ addPartner }) => {
                 </select>
                 <label>Choose your option</label>
             </div>
+
+            <div className='row'>
+                <div className='row'>
+                    <input type="text" name='tax_number' value={tax_number} onChange={e => setTax_number(e.target.value)}>
+                    </input>
+                    <label htmlFor='tax_number' className='active'>
+                    Tax number
+                    </label>              
+                </div>
+            </div>
+
+            <div className='row'>
+                <div className='row'>
+                    <input type="text" name='company_reg_number' value={company_reg_number} onChange={e => setCompany_reg_number(e.target.value)}>
+                    </input>
+                    <label htmlFor='company_reg_number' className='active'>
+                    Company registration number
+                    </label>              
+                </div>
+            </div>
+
             <div className='row'> 
                 <select name='settlement' value={settlement_id} className='browser-default' onChange={e => setSettlement(e.target.value)}>                
                 <option value="" disabled selected>Select Settlement</option>
                 <SettlementSelectOptions />              
                 </select>
                 <label>Choose your option</label>
+            </div>
+
+            <div className='row'>
+                <div className='row'>
+                    <input type="text" name='address' value={address} onChange={e => setAddress(e.target.value)}>
+                    </input>
+                    <label htmlFor='address' className='active'>
+                    Address
+                    </label>              
+                </div>
+            </div>
+
+            <div className='row'>
+                <div className='row'>
+                    <input type="text" name='phone_number' value={phone_number} onChange={e => setPhone_number(e.target.value)}>
+                    </input>
+                    <label htmlFor='phone_number' className='active'>
+                    Phone number
+                    </label>              
+                </div>
+            </div>
+
+            <div className='row'>
+                <div className='row'>
+                    <input type="text" name='bank_account_number' value={bank_account_number} onChange={e => setBank_account_number(e.target.value)}>
+                    </input>
+                    <label htmlFor='bank_account_number' className='active'>
+                    Bank account number
+                    </label>              
+                </div>
+            </div>
+
+            <div className='row'>
+                <div className='row'>
+                    <input type="text" name='comment' value={comment} onChange={e => setComment(e.target.value)}>
+                    </input>
+                    <label htmlFor='comment' className='active'>
+                    Comment
+                    </label>              
+                </div>
             </div>
 
 
@@ -94,8 +168,8 @@ const AddPartnerModal = ({ addPartner }) => {
 }
 
 const modalStyle = {
-    width: '75%',
-    height: '75%'
+    width: '85%',
+
   };
 
 AddPartnerModal.propTypes = {
