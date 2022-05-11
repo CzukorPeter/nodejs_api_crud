@@ -11,7 +11,6 @@ import * as XLSX from "xlsx";
 const Partners = ({ partner: { partners, loading }, getPartners }) => {
     useEffect(() => {
         getPartners();
-      // eslint-disable-next-line
     }, []);
 
 

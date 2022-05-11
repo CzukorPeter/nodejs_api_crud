@@ -7,7 +7,6 @@ import { getCompanyforms } from '../../actions/companyActions';
 const CompanyformSelectOptions = ({ getCompanyforms, companyform: { companyforms, loading } }) => {
   useEffect(() => {
     getCompanyforms();
-    // eslint-disable-next-line
   }, []);
 
   return (

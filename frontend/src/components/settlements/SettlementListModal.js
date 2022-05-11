@@ -4,12 +4,10 @@ import PropTypes from 'prop-types';
 import SettlementItem from './SettlementItem';
 import { getSettlements } from '../../actions/settlementActions';
 
-import M from 'materialize-css/dist/js/materialize.min.js';
 
 const SettlementListModal = ({ settlement: { settlements, loading }, getSettlements }) => {
   useEffect(() => {
     getSettlements();
-    // eslint-disable-next-line
   }, []);
 
 

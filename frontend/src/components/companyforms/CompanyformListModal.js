@@ -9,7 +9,6 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 const CompanyformListModal = ({ companyform: { companyforms, loading }, getCompanyforms }) => {
   useEffect(() => {
     getCompanyforms();
-    // eslint-disable-next-line
   }, []);
 
 

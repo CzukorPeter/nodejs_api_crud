@@ -18,6 +18,10 @@ To run this project, install it locally using npm:
 ```
 $ cd ../backend
 $ npm install
+$ npx knex migrate:latest
+$ npx knex seed:make seed_companyforms.js
+$ npx knex seed:make seed_settlements.js
+$ npx knex seed:make seed_partners.js
 $ yarn start or yarn server
 ```
 
@@ -66,7 +70,6 @@ localhost:3000
 - Add Company forms option
 - implement feature for the "GroupBySettlements" and "GroupByCompanyforms" endpoints
 - Write API Documentation with Swagger
+- Write API endpoint tests
 - Deploy backend to Heroku
 - Frontend to Netlify
-
-

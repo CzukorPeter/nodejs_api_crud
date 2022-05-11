@@ -6,7 +6,6 @@ import { getSettlements } from '../../actions/settlementActions';
 const SettlementSelectOptions = ({ getSettlements, settlement: { settlements, loading } }) => {
   useEffect(() => {
     getSettlements();
-    // eslint-disable-next-line
   }, []);
 
   return (

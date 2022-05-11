@@ -26,9 +26,6 @@ module.exports = {
     updatePartnerById,
 };
 
-//settlements
-//settlement
-
 async function addSettlement(settlement) {
   const [id] = await db('settlements').insert(settlement);
   return findSettlementById(id);
@@ -60,10 +57,6 @@ function updateSettlementById(id, changes){
     });
 }
 
-
-//companyforms
-//companyform
-
 async function addCompanyform(companyform) {
   const [id] = await db('companyforms').insert(companyform);
   return findCompanyformById(id);
@@ -93,10 +86,6 @@ function updateCompanyformById(id, changes){
         return findCompanyformById(id);
     });
 }
-
-
-//partners
-//partner
 
 async function addPartner(partner, settlement_id, companyform_id) {
   const [id] = await db('partners')
