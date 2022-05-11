@@ -2,24 +2,26 @@
 
 Abc123
 
-### Backend
-
+## Backend
+##### Tech stacks
 
 ```sh
-127.0.0.1:1550
+localhost:1550
 ```
 
 
-### Frontend
 
+## Frontend
+
+##### Tech stacks
 
 
 ```sh
-127.0.0.1:3000
+localhost:3000
 ```
 
-## Tech stacks
-- 
+------------
 
-### Todo 
+
+##### Todo
 - 
