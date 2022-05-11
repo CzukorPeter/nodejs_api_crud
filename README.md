@@ -14,6 +14,7 @@ REST API using Node.js based on SQLite3 database.
 
 ##### Setup
 To run this project, install it locally using npm:
+
 (Creating database tables and seed with dummy data is only needed if you will get a blank database for testing or need to get dummy data after database rollback.)
 
 ```
