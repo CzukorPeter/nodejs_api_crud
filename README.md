@@ -34,6 +34,7 @@ Company forms API endpoints: /companyforms
 ## Frontend
 
 Client side web interface with React.js and MaterializeCSS.
+
 ![Screenshot](screenshot.png)
 
 ##### Tech stacks
