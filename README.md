@@ -10,9 +10,21 @@ REST API using Node.js based on SQLite3 database
 - Knex.js
 - SQLite3 database
 
+##### Setup
+To run this project, install it locally using npm:
+
+```
+$ cd ../lbackend
+$ npm install
+$ yarn start or yarn server
+```
+
+
 ```sh
 localhost:1550/api
 ```
+
+
 Partners API endpoints: /partners
 Settlements API endpoints: /settlements
 Company forms API endpoints: /companyforms
@@ -26,6 +38,15 @@ Client side web interface with React.js and MaterializeCSS.
 - React-Redux.js.
 - MaterializeCSS
 
+##### Setup
+To run this project, install it locally using npm:
+
+```
+$ cd ../frontend
+$ npm install
+$ yarn start
+```
+
 ```sh
 localhost:3000
 ```
@@ -34,6 +55,7 @@ localhost:3000
 
 
 ##### Todo
+- Write API Documentation
 - UI Redesign (with Bootstrap v.5)
 - Server side search endpoint
 - Client side filter and sorting
