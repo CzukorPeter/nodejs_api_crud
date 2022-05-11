@@ -49,6 +49,8 @@ const Partners = ({ partner: { partners, loading }, getPartners }) => {
               <th>Phone number</th>
               <th>Bank account number</th>
               <th>Comment</th>
+              <th></th>
+              <th></th>
           </tr>
         </thead>
         {! loading && partners.length === 0 ? (<p className="cente">No partners in the database...</p>) : (

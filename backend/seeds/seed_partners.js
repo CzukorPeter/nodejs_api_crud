@@ -4,7 +4,7 @@ exports.seed = function(knex) {
     return knex('partners').truncate()
       .then(function () {
         return knex('partners').insert([
-          {id: 1, name: 'Gábor Balog',companyform_id: 1, tax_number: '4118-147111', company_reg_number: '4716 2576 3188 4', settlement_id: 1, address: 'Pataki körtér 91. 67. emelet', phone_number: '06(76)040-518', bank_account_number: 'HU79611344950670485178037144', comment: 'henriett22@balazs.com'},
+          {id: 1, name: 'Balogh Gábor',companyform_id: 1, tax_number: '4118-147111', company_reg_number: '4716 2576 3188 4', settlement_id: 1, address: 'Pataki körtér 91. 67. emelet', phone_number: '06(76)040-518', bank_account_number: 'HU79611344950670485178037144', comment: 'henriett22@balazs.com'},
           {id: 2, name: 'Budai Adél', companyform_id: 2, tax_number: '157142-180243', company_reg_number: '2221 8811 0548 1479', settlement_id: 5, address: 'Zétény útja 53.', phone_number: '06(35)528-735', bank_account_number: 'HU39049441729855009955583898', comment: 'kocsis.sara@freemail.com'},
           {id: 3, name: 'Lukács Noel', companyform_id: 2, tax_number: '234246-151204', company_reg_number: '6011 6873 8012 7454', settlement_id: 2, address: 'Mária pincesor 7. 18. ajtó', phone_number: '+36603574653', bank_account_number: 'HU39679827896305625012597594', comment: 'vilmos.toth@gmail.com'},
           {id: 4, name: 'Németh Sándor', companyform_id: 3, tax_number: '232212-5155', company_reg_number: '6011 8552 1999 6494', settlement_id: 6, address: 'Kossuth u. 11', phone_number: '+36410133871', bank_account_number: 'HU42601132849743207683940771', comment: 'peter96@torok.com'},
